@@ -1,0 +1,19 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  background: lightgreen;
+  width: 100%;
+  max-width: 640px;
+  padding: 24px;
+}
+
+.block > div {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 0;
+}
+
+.block > div > span {
+  background: white;
+  padding: 4px;
+}
