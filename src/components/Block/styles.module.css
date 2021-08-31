@@ -7,6 +7,15 @@
   padding: 24px;
 }
 
+.blockInvalid {
+  display: flex;
+  flex-direction: column;
+  background: #ff9c9c;
+  width: 100%;
+  max-width: 640px;
+  padding: 24px;
+}
+
 .block > div {
   display: flex;
   flex-direction: column;
