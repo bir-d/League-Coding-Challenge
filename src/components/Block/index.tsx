@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import sha256 from 'sha256';
+import BlockChain from '../BlockChain';
 import styles from './styles.module.css';
 
 interface Props {
@@ -26,6 +27,8 @@ const Block = ({ block, previousHash = '0'.repeat(64), hash, onHash, onDelete }:
   const [data, setData] = useState('');
 
   // Every time the hash needs to be recalculated, call onHash
+  //useEffect(() => {sha256(block + data + previousHash + nonce)})
+
   useEffect(() => {
     onHash(block, sha256(block + data + previousHash + nonce))
   }, [block, data, previousHash, nonce]);
