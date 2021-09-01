@@ -26,8 +26,10 @@ const BlockChain = () => {
    * onDelete should delete the last block
    * Should only need to pass to the last block
    */
-  const onDelete = () => {
-    
+  const onDelete = (_block: number) => {
+    let newBlocks = [...blocks]
+    newBlocks.splice(_block, 1)
+    setBlocks(newBlocks) 
   }
 
   /**
