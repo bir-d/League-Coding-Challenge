@@ -11,7 +11,8 @@ import styles from './styles.module.css';
  */
 const BlockChain = () => {
   // Contains all hashes
-  const [hashes, setHashes] = useState<string[]>([]); 
+  const [hashes, setHashes] = useState<(string[])>([]); 
+  const [blocks, setBlocks] = useState<(JSX.Element[])>([]);
 
   /**
    * Complete this function
