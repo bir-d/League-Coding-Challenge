@@ -55,9 +55,9 @@ const BlockChain = () => {
   return (
     <div className={styles.blockChain}>
       <h1>Block Chain Demo</h1>
-      <div>Total Blocks: 0</div>
-      <Block block={1} hash={hashes[0]} onHash={onHash} onDelete={onDelete}/>
-      <button type="button" onClick={() => onAdd()}>Add Block</button>
+      <div>Total Blocks: {blocks.length}</div>
+      <ul>{blocks}</ul>
+      <button type="button" onClick={onAdd}>Add Block</button>
     </div> 
   );
 }
