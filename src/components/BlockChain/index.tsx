@@ -42,8 +42,9 @@ const BlockChain = () => {
    * E.g., block 1 should update its corresponding index in the state 'hashes'
    */
   const onHash = (_block: number, hash: string) => {
-    setHashes([hash]);
+    hashes[_block] = hash
   }
+
 
   /**
    * Fix the return statement
