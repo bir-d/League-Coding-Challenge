@@ -1,7 +1,6 @@
 .block {
   display: flex;
   flex-direction: column;
-  background: lightgreen;
   width: 100%;
   max-width: 640px;
   padding: 24px;
@@ -13,15 +12,6 @@
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-}
-
-.blockInvalid {
-  display: flex;
-  flex-direction: column;
-  background: #ff9c9c;
-  width: 100%;
-  max-width: 640px;
-  padding: 24px;
 }
 
 .block > div {
