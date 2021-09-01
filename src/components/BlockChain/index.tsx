@@ -4,6 +4,10 @@ import Block from '../Block';
 
 import styles from './styles.module.css';
 
+interface props {
+  children: React.ReactNode
+}
+
 /**
  * Block Chain Component
  * This component adds, delete and contains the hashes for the block chain
@@ -57,7 +61,7 @@ const BlockChain = () => {
     <div className={styles.blockChain}>
       <h1>Block Chain Demo</h1>
       <div>Total Blocks: {blocks.length}</div>
-      <ul>{blocks}</ul>
+      <ul>{props.children}</ul>
       <button type="button" onClick={onAdd}>Add Block</button>
     </div> 
   );
