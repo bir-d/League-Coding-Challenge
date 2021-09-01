@@ -59,7 +59,7 @@ const Block = ({ block, previousHash = '0'.repeat(64), hash, onHash, onDelete }:
         Previous Hash <span>{previousHash}</span>
       </div>
       <div>
-        Hash <span>{hash}</span>
+        Hash <span>{BlockChain}</span>
       </div>
       <div>
         Valid Block <span>{hash && isValidHash(hash) ? "Valid" : "Not Valid"}</span>
