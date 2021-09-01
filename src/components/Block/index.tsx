@@ -41,7 +41,7 @@ const Block = ({ block, previousHash = '0'.repeat(64), hash, onHash, onDelete }:
   };
 
   return (
-    <div className={styles.block}>
+    <div style={{background: hash && isValidHash(hash) ? "lightgreen" : "#ff9c9c"}} className={styles.block}>
       <div>
         Block <span>{block}</span>
       </div>
