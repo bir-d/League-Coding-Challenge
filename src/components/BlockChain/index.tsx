@@ -19,7 +19,10 @@ const BlockChain = () => {
    * onAdd should create a new block
    */
   const onAdd = () => {
-
+    //Create new block
+    let newBlocks = [...blocks]
+    newBlocks.push(<Block block={blocks.length} previousHash={hashes[hashes.length - 1]} hash={hashes[hashes.length]} onHash={onHash} onDelete={onDelete}/>)
+    setBlocks(newBlocks)
   }
 
   /**
