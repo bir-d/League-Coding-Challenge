@@ -4,10 +4,6 @@ import Block from '../Block';
 
 import styles from './styles.module.css';
 
-interface props {
-  children: React.ReactNode
-}
-
 /**
  * Block Chain Component
  * This component adds, delete and contains the hashes for the block chain
@@ -52,6 +48,7 @@ const BlockChain = () => {
     let newBlocks = [...blocks]
 
     newHashes[_block] = hash
+    // Replaces the block with a new one, containing the updated hash
     newBlocks[_block] = <Block block={_block} previousHash={newHashes[_block - 1]} hash={newHashes[_block]} onHash={onHash} onDelete={onDelete}/>
 
     setHashes(newHashes)
