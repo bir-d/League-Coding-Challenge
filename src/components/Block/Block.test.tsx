@@ -88,6 +88,26 @@ it("Mining works correctly", () => {
  * we need to make sure the changes effect the hash and that onHash is called
  */
 it("Changing data effects hash", () => {
+  // Define mock functions
+  const onHash = jest.fn
 
+  // Render block
+  const block = render(<Block  block={1} hash={'0'.repeat(64)} onHash={onHash}/>);
+
+  // Change its data
+  const input = block.getByLabelText('Data')
+  fireEvent.change(input, {target: {value: 'Test data'}})
+
+  // Check if onHash() is called
+  expect(onHash).toBeCalled();
+
+  // Check block hash
+  const { getByText } = render(<BlockChain />); // Is there a way to get this to work without going through BlockChain?
+  userEvent.click(getByText('Add Block'));
+  const secondInput = block.getByLabelText('Data')
+  fireEvent.change(secondInput, {target: {value: 'ABC'}})
+
+  // Hash of data "ABC" will always be the same
+  expect(getByText("081111fb5897465c6d5f51ee4fc377b6db3e222acab586f255bb2240519eeebd")).toBeInTheDocument();
 });
 
