@@ -11,7 +11,7 @@ import styles from './styles.module.css';
  */
 const BlockChain = () => {
   // Contains all hashes
-  const [hashes, setHashes] = useState<(string[])>([]); 
+  const [hashes, setHashes] = useState<((string|undefined)[])>([]); 
 
   /**
    * Complete this function
