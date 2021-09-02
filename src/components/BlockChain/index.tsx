@@ -12,18 +12,15 @@ import styles from './styles.module.css';
 const BlockChain = () => {
   // Contains all hashes
   const [hashes, setHashes] = useState<(string[])>([]); 
-  // Contains all blocks
-  const [blocks, setBlocks] = useState<(JSX.Element[])>([]);
 
   /**
    * Complete this function
    * onAdd should create a new block
    */
   const onAdd = () => {
-    // Pushes a new block onto `blocks`
-    let newBlocks = [...blocks]
-    newBlocks.push(<Block block={blocks.length} previousHash={hashes[hashes.length - 1]} hash={hashes[hashes.length]} onHash={onHash} onDelete={onDelete}/>)
-    setBlocks(newBlocks)
+    let newHashes = [...hashes]
+    newHashes.push(undefined)
+    setHashes(newHashes)
   }
 
   /**
@@ -31,10 +28,10 @@ const BlockChain = () => {
    * onDelete should delete the last block
    * Should only need to pass to the last block
    */
-  const onDelete = (_block: number) => {
-    let newBlocks = [...blocks]
-    newBlocks.splice(_block, 1)
-    setBlocks(newBlocks) 
+  const onDelete = () => {
+    let newHashes = [...hashes]
+    newHashes.pop()
+    setHashes(newHashes)
   }
 
   /**
@@ -44,15 +41,8 @@ const BlockChain = () => {
    */
   const onHash = (_block: number, hash: string) => {
     let newHashes = [...hashes]
-    // There's gotta be a better way to do this
-    let newBlocks = [...blocks]
-
     newHashes[_block] = hash
-    // Replaces the block with a new one, containing the updated hash
-    newBlocks[_block] = <Block block={_block} previousHash={newHashes[_block - 1]} hash={newHashes[_block]} onHash={onHash} onDelete={onDelete}/>
-
     setHashes(newHashes)
-    setBlocks(newBlocks)
   }
 
 
@@ -66,8 +56,18 @@ const BlockChain = () => {
   return (
     <div className={styles.blockChain}>
       <h1>Block Chain Demo</h1>
-      <div>Total Blocks: {blocks.length}</div>
-      <div>{blocks}</div>
+      <div>Total Blocks: {hashes.length}</div>
+      <div>
+        {hashes.map((block, index) => (
+          <Block
+            block={index}
+            hash={hashes[index]}
+            previousHash={hashes[index - 1]}
+            onDelete={index == hashes.length - 1 ?  onDelete : undefined} // Only display delete button on last block
+            onHash={onHash}
+            />
+          ))}
+      </div>
       <button type="button" onClick={onAdd}>Add Block</button>
     </div> 
   );
