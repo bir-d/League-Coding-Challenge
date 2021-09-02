@@ -15,8 +15,21 @@ import Block from './';
  * onHash is called and the hash change is reflected in the component
  */
 it('Hash is set on load', () => {
-  
+  // Define mock functions
+  const onHash = jest.fn
+
   // Render block
+  render(<Block  block={1} hash={'0'.repeat(64)} onHash={onHash}/>);
+
+  // Check if onHash() is called
+  expect(onHash).toBeCalled();
+
+  // Render new block
+  const { getByText } = render(<BlockChain />);
+  userEvent.click(getByText('Add Block'));
+
+  // Check blocks hash 
+  expect(getByText("d5f28bdae4731c38abc064bc702233257035309462dbeaa891f9e8f33df6d78e")).toBeInTheDocument();
 });
 
 /**
