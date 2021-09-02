@@ -16,6 +16,7 @@ import Block from './';
  */
 it('Hash is set on load', () => {
   
+  // Render block
 });
 
 /**
@@ -23,7 +24,10 @@ it('Hash is set on load', () => {
  * On render, the text 'Not Valid' should be in the document as the hash is not valid
  */
 it("Shows not valid text", () => {
-
+  // Render block
+  const { getByText } = render(<BlockChain />);
+  userEvent.click(getByText('Add Block'));
+  expect(getByText("Not Valid")).toBeInTheDocument();
 });
 
 /**
