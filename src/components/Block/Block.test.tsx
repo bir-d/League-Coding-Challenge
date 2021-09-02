@@ -68,7 +68,18 @@ it("Delete is called correctly", () => {
  * The text 'Valid' should also be in the document
  */
 it("Mining works correctly", () => {
+  // Render block
+  const { getByText } = render(<BlockChain />);
+  userEvent.click(getByText('Add Block'));
 
+  // Mine it
+  userEvent.click(getByText('Mine'));
+
+  // Check if valid hash (This should always be the same with no data in the block)
+  expect(getByText("000bb107bb6e6eed87f53ae39eecfcd496716fc2a7d26941c85307ec681f66e4")).toBeInTheDocument();
+  
+  // Check "Valid" indicator
+  expect(getByText("Valid")).toBeInTheDocument(); //TODO: This is wrong!
 });
 
 /**
