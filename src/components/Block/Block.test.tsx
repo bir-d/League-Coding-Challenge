@@ -1,8 +1,9 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import {render, fireEvent} from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 
 import Block from './';
+import BlockChain from '../BlockChain'
 
 /**
  * Block Testing
