@@ -48,7 +48,18 @@ it("Shows not valid text", () => {
  * We need to make sure that when clicking on delete, the delete function is called
  */
 it("Delete is called correctly", () => {
+  // Define mock functions
+  const onDelete = jest.fn
+  const onHash = jest.fn
 
+  // Render block
+  const {getByText} = render(<Block  block={1} hash={'0'.repeat(64)} onDelete={onDelete} onHash={onHash}/>);
+
+  // Click on delete
+  userEvent.click(getByText('Delete'));
+
+  // See if onDelete() called
+  expect(onDelete).toBeCalled();
 });
 
 /**
