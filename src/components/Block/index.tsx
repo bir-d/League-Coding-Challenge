@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 import sha256 from 'sha256';
-import BlockChain from '../BlockChain';
 import styles from './styles.module.css';
 
 interface Props {
