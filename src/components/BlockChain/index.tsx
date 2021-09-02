@@ -16,6 +16,7 @@ interface props {
 const BlockChain = () => {
   // Contains all hashes
   const [hashes, setHashes] = useState<(string[])>([]); 
+  // Contains all blocks
   const [blocks, setBlocks] = useState<(JSX.Element[])>([]);
 
   /**
@@ -23,7 +24,7 @@ const BlockChain = () => {
    * onAdd should create a new block
    */
   const onAdd = () => {
-    //Create new block
+    // Pushes a new block onto `blocks`
     let newBlocks = [...blocks]
     newBlocks.push(<Block block={blocks.length} previousHash={hashes[hashes.length - 1]} hash={hashes[hashes.length]} onHash={onHash} onDelete={onDelete}/>)
     setBlocks(newBlocks)
@@ -46,7 +47,15 @@ const BlockChain = () => {
    * E.g., block 1 should update its corresponding index in the state 'hashes'
    */
   const onHash = (_block: number, hash: string) => {
-    hashes[_block] = hash
+    let newHashes = [...hashes]
+    // There's gotta be a better way to do this
+    let newBlocks = [...blocks]
+
+    newHashes[_block] = hash
+    newBlocks[_block] = <Block block={_block} previousHash={newHashes[_block - 1]} hash={newHashes[_block]} onHash={onHash} onDelete={onDelete}/>
+
+    setHashes(newHashes)
+    setBlocks(newBlocks)
   }
 
 
@@ -61,7 +70,7 @@ const BlockChain = () => {
     <div className={styles.blockChain}>
       <h1>Block Chain Demo</h1>
       <div>Total Blocks: {blocks.length}</div>
-      <ul>{props.children}</ul>
+      <ul>{blocks}</ul>
       <button type="button" onClick={onAdd}>Add Block</button>
     </div> 
   );

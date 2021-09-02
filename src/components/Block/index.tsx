@@ -27,8 +27,6 @@ const Block = ({ block, previousHash = '0'.repeat(64), hash, onHash, onDelete }:
   const [data, setData] = useState('');
 
   // Every time the hash needs to be recalculated, call onHash
-  //useEffect(() => {sha256(block + data + previousHash + nonce)})
-
   useEffect(() => {
     onHash(block, sha256(block + data + previousHash + nonce))
   }, [block, data, previousHash, nonce]);
@@ -59,7 +57,7 @@ const Block = ({ block, previousHash = '0'.repeat(64), hash, onHash, onDelete }:
         Previous Hash <span>{previousHash}</span>
       </div>
       <div>
-        Hash <span>{BlockChain}</span>
+        Hash <span>{hash}</span>
       </div>
       <div>
         Valid Block <span>{hash && isValidHash(hash) ? "Valid" : "Not Valid"}</span>
