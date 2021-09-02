@@ -67,7 +67,7 @@ const BlockChain = () => {
     <div className={styles.blockChain}>
       <h1>Block Chain Demo</h1>
       <div>Total Blocks: {blocks.length}</div>
-      <ul>{blocks}</ul>
+      <div>{blocks}</div>
       <button type="button" onClick={onAdd}>Add Block</button>
     </div> 
   );
