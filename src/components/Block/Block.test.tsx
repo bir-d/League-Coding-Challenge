@@ -17,7 +17,7 @@ import BlockChain from '../BlockChain'
  */
 it('Hash is set on load', () => {
   // Define mock functions
-  const onHash = jest.fn
+  const onHash = jest.fn()
 
   // Render block
   render(<Block  block={1} hash={'0'.repeat(64)} onHash={onHash}/>);
@@ -50,8 +50,8 @@ it("Shows not valid text", () => {
  */
 it("Delete is called correctly", () => {
   // Define mock functions
-  const onDelete = jest.fn
-  const onHash = jest.fn
+  const onDelete = jest.fn()
+  const onHash = jest.fn()
 
   // Render block
   const {getByText} = render(<Block  block={1} hash={'0'.repeat(64)} onDelete={onDelete} onHash={onHash}/>);
