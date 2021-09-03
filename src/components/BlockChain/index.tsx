@@ -43,6 +43,7 @@ const BlockChain = () => {
       <div>
         {hashes.map((block, index) => (
           <Block
+            key={index}
             block={index}
             hash={hashes[index]}
             previousHash={hashes[index - 1]}
