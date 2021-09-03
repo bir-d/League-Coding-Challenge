@@ -41,7 +41,7 @@ const BlockChain = () => {
       <h1>Block Chain Demo</h1>
       <div>Total Blocks: {hashes.length}</div>
       <div>
-        {hashes.map((block, index) => (
+        {hashes.map((_block, index) => (
           <Block
             key={index}
             block={index}
