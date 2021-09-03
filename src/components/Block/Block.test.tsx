@@ -89,26 +89,22 @@ it("Mining works correctly", () => {
  * we need to make sure the changes effect the hash and that onHash is called
  */
 it("Changing data effects hash", () => {
-  // Define mock functions
-  const onHash = jest.fn
+  // Define mock functions.
+  const onHash = (_block: number, hash: string) => {return hash};
+  const mockOnHash = jest.fn(onHash);
 
   // Render block
-  const block = render(<Block  block={1} hash={'0'.repeat(64)} onHash={onHash}/>);
+  const block = render(<Block  block={0} hash={'0'.repeat(64)} onHash={mockOnHash}/>);
 
-  // Change its data
-  const input = block.getByLabelText('Data')
-  fireEvent.change(input, {target: {value: 'Test data'}})
+  // Change its data -- this will be the second time onHash is called
+  const input = block.getByLabelText('Data');
+  fireEvent.change(input, {target: {value: 'Test data'}});
 
-  // Check if onHash() is called
-  expect(onHash).toBeCalled();
+  // Check if onHash() has been called twice
+  expect(mockOnHash).toBeCalledTimes(2);
 
-  // Check block hash
-  const { getByText } = render(<BlockChain />); // Is there a way to get this to work without going through BlockChain?
-  userEvent.click(getByText('Add Block'));
-  const secondInput = block.getByLabelText('Data')
-  fireEvent.change(secondInput, {target: {value: 'ABC'}})
-
-  // Hash of data "ABC" will always be the same
-  expect(getByText("081111fb5897465c6d5f51ee4fc377b6db3e222acab586f255bb2240519eeebd")).toBeInTheDocument();
+  // Check hash: the hash of data "Test data" will always be the same
+  expect(mockOnHash.mock.results[1].value).toBe("46edce07533d9fa80d23fd15a1e95f8315c95cc9579bb6ad564fe41c1c4e00c1");
+  // Check if the hash has changed from block render after data field was modified.
+  expect(mockOnHash.mock.results[1].value).not.toEqual(mockOnHash.mock.results[0].value)
 });
-
