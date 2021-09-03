@@ -51,7 +51,7 @@ it("Shows not valid text", () => {
 it("Delete is called correctly", () => {
   // Define mock functions
   const onDelete = jest.fn()
-  
+
   // Render block
   const {getByText} = render(<Block  block={1} hash={'0'.repeat(64)} onDelete={onDelete} onHash={() => {}}/>);
 
@@ -78,8 +78,8 @@ it("Mining works correctly", () => {
   // Check if valid hash (This should always be the same with no data in the block)
   expect(getByText("000bb107bb6e6eed87f53ae39eecfcd496716fc2a7d26941c85307ec681f66e4")).toBeInTheDocument();
   
-  // Check "Valid" indicator
-  expect(getByText("Valid")).toBeInTheDocument(); //TODO: This is wrong!
+  // Check "Valid" indicator. Ignore the "Valid Block" header.
+  expect(getByText("Valid", {ignore:"Valid Block"})).toBeInTheDocument;
 });
 
 /**
