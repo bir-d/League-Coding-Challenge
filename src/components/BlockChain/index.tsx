@@ -10,49 +10,32 @@ import styles from './styles.module.css';
  * A single block is already done
  */
 const BlockChain = () => {
+
   // Contains all hashes
   const [hashes, setHashes] = useState<((string|undefined)[])>([]); 
 
-  /**
-   * Complete this function
-   * onAdd should create a new block
-   */
+  // onAdd should create a new block
   const onAdd = () => {
     let newHashes = [...hashes]
     newHashes.push(undefined)
     setHashes(newHashes)
   }
 
-  /**
-   * Complete this function
-   * onDelete should delete the last block
-   * Should only need to pass to the last block
-   */
+  // onDelete should delete the last block
   const onDelete = () => {
     let newHashes = [...hashes]
     newHashes.pop()
     setHashes(newHashes)
   }
 
-  /**
-   * Complete this function
-   * onHash should update the corresponding index in the state 'hashes'
-   * E.g., block 1 should update its corresponding index in the state 'hashes'
-   */
+  // onHash should update the corresponding index in the state 'hashes'
   const onHash = (_block: number, hash: string) => {
     let newHashes = [...hashes]
     newHashes[_block] = hash
     setHashes(newHashes)
   }
 
-
-  /**
-   * Fix the return statement
-   * Currently we only show one block, this is incorrect.
-   * We need to be able to show multiple blocks as a block chain should.
-   * You'll most likely need to add more functions or states to fix the render. Figure out a way you can go about this.
-   * Total Blocks is also incorrect.
-   */
+  // Render by mapping each hash to a new `Block` component.
   return (
     <div className={styles.blockChain}>
       <h1>Block Chain Demo</h1>

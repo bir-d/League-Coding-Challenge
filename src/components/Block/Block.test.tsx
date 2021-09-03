@@ -5,10 +5,7 @@ import userEvent from '@testing-library/user-event'
 import Block from './';
 import BlockChain from '../BlockChain'
 
-/**
- * Block Testing
- * Please Complete these tests
- */
+// Block Testing
 
 /**
  * Hash is set on load
